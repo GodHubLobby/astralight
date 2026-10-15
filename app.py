@@ -124,7 +124,7 @@ def convert_pdf_to_image():
 
     except Exception as e:
         STATS["history"].insert(0, {"name": file.filename, "type": "PDF to Image", "time": "-", "status": "Failed"})
-        return jsonify({"error": f"Requires PyMuPDF package (pip install PyMuPDF). Details: {str(e)}"}), 500
+        return jsonify({"error": f"Requires PyMuPDF package (pip install PyMuPDF). Details: {str(e)}"}) , 500
 
 # ---------------------------------------------------------
 # 3. YouTube Progress Route (MP4 or MP3)
@@ -156,11 +156,11 @@ def download_yt_stream():
                 "outtmpl": os.path.join(temp_dir, "%(title).50s.%(ext)s"),
                 "postprocessors": postprocessors,
                 "http_headers": {
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
                 },
                 "extractor_args": {
                     "youtube": {
-                        "player_client": ["android", "web"]
+                        "player_client": ["android"]
                     }
                 },
                 "remote_components": ["ejs:npm"]
@@ -235,11 +235,11 @@ def download_spotify_stream():
                     "preferredquality": "192",
                 }],
                 "http_headers": {
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
                 },
                 "extractor_args": {
                     "youtube": {
-                        "player_client": ["android", "web"]
+                        "player_client": ["android"]
                     }
                 },
                 "remote_components": ["ejs:npm"]
@@ -282,3 +282,4 @@ def download_file(file_id):
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
+```[cite: 5]
