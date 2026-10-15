@@ -3,11 +3,11 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "app.py"
+      "dest": "wsgi.py"
     }
   ],
   "functions": {
-    "app.py": {
+    "wsgi.py": {
       "maxDuration": 60
     }
   }
