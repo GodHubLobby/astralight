@@ -151,11 +151,13 @@ def download_yt_stream():
             
             yield f"data: {json.dumps({'progress': 50, 'status': 'Downloading file...'})}\n\n"
 
+            cookie_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "cookies.txt")
+
             ydl_opts = {
                 "format": fmt,
                 "outtmpl": os.path.join(temp_dir, "%(title).50s.%(ext)s"),
                 "postprocessors": postprocessors,
-                "cookiefile": "cookies.txt",
+                "cookiefile": cookie_path,
                 "http_headers": {
                     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
                 },
@@ -227,6 +229,8 @@ def download_spotify_stream():
 
             yield f"data: {json.dumps({'progress': 50, 'status': 'Downloading MP3 audio...'})}\n\n"
 
+            cookie_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "cookies.txt")
+
             ydl_opts = {
                 "format": "bestaudio/best",
                 "outtmpl": os.path.join(temp_dir, "%(title).50s.%(ext)s"),
@@ -235,7 +239,7 @@ def download_spotify_stream():
                     "preferredcodec": "mp3",
                     "preferredquality": "192",
                 }],
-                "cookiefile": "cookies.txt",
+                "cookiefile": cookie_path,
                 "http_headers": {
                     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
                 },
