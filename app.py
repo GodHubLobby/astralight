@@ -124,7 +124,7 @@ def convert_pdf_to_image():
 
     except Exception as e:
         STATS["history"].insert(0, {"name": file.filename, "type": "PDF to Image", "time": "-", "status": "Failed"})
-        return jsonify({"error": f"Requires PyMuPDF package (pip install PyMuPDF). Details: {str(e)}"}) , 500
+        return jsonify({"error": f"Requires PyMuPDF package (pip install PyMuPDF). Details: {str(e)}"}), 500
 
 # ---------------------------------------------------------
 # 3. YouTube Progress Route (MP4 or MP3)
@@ -155,12 +155,13 @@ def download_yt_stream():
                 "format": fmt,
                 "outtmpl": os.path.join(temp_dir, "%(title).50s.%(ext)s"),
                 "postprocessors": postprocessors,
+                "cookiefile": "cookies.txt",
                 "http_headers": {
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
                 },
                 "extractor_args": {
                     "youtube": {
-                        "player_client": ["android"]
+                        "player_client": ["android", "web"]
                     }
                 },
                 "remote_components": ["ejs:npm"]
@@ -234,12 +235,13 @@ def download_spotify_stream():
                     "preferredcodec": "mp3",
                     "preferredquality": "192",
                 }],
+                "cookiefile": "cookies.txt",
                 "http_headers": {
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
                 },
                 "extractor_args": {
                     "youtube": {
-                        "player_client": ["android"]
+                        "player_client": ["android", "web"]
                     }
                 },
                 "remote_components": ["ejs:npm"]
